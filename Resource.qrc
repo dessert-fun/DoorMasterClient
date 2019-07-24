@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="ico">
+    <file>Source/duigou.png</file>
+    <file>Source/yuan.png</file>
+  </qresource>
+</RCC>
