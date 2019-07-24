@@ -1,6 +1,6 @@
 from aip import AipFace
 import base64
-import threading
+import app
 
 class Face(object):
 
@@ -46,11 +46,13 @@ class Face(object):
 
 
 if __name__ == '__main__':
-    k1 = base64.b64encode(open('Source/2.jpg', 'rb').read()).decode()
-    k2 = base64.b64encode(open('Source/3.jpg', 'rb').read()).decode()
-    k3=base64.b64encode(open('capture.jpg','rb').read()).decode()
-    print(len(k3))
-
+    # k1 = base64.b64encode(open('Source/2.jpg', 'rb').read()).decode()
+    # k2 = base64.b64encode(open('Source/3.jpg', 'rb').read()).decode()
+    # k3=base64.b64encode(open('capture.jpg','rb').read()).decode()
+    # print(len(k3))
+    list1=app.search_iamge()
+    for i in list1:
+        print(i)
     # face=Face(list1)
     # scroe,feedback=face.match("capture.jpg")
     # print(scroe,feedback)

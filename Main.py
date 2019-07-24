@@ -1,7 +1,7 @@
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QMainWindow, QApplication
 import sys
-
+import app
 from untitled import *
 import cv2
 import time
@@ -41,10 +41,10 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
 
 
 if __name__ == '__main__':
-    k1 = base64.b64encode(open('Source/2.jpg', 'rb').read()).decode()
-    k2 = base64.b64encode(open('Source/3.jpg', 'rb').read()).decode()
-    k3 = base64.b64encode(open('Source/me.jpg', 'rb').read()).decode()
-    list1 = [k1, k2, k3]
+    # k1 = base64.b64encode(open('Source/2.jpg', 'rb').read()).decode()
+    # k2 = base64.b64encode(open('Source/3.jpg', 'rb').read()).decode()
+    # k3 = base64.b64encode(open('Source/me.jpg', 'rb').read()).decode()
+    list1 = app.search_iamge()
 
     faceRec=face.Face(list1)
 
@@ -94,6 +94,7 @@ if __name__ == '__main__':
                 #图像匹配
                 me=cv2.resize(image,(80,45))
                 cv2.imwrite("capture.jpg", image,[cv2.IMWRITE_JPEG_QUALITY, 50])
+
                 score, feedback = faceRec.match("capture.jpg")
                 print('Score:',score,"Feedback",feedback)
                 myWin.SimLabel.setText(str(score))
