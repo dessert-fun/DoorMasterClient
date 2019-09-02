@@ -96,12 +96,65 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.Right.setFont(font)
         self.Right.setObjectName("Right")
+        # label_6是天气面板展示的内容,现在设一个label_info展示信息
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(670, 310, 801, 471))
         self.label_6.setStyleSheet("background-color:rgb(255, 255, 255);\n"
 "border:1px solid")
         self.label_6.setText("")
         self.label_6.setObjectName("label_6")
+
+        # 使用label_info作为成功后的展示面板
+        self.label_info = QtWidgets.QLabel(self.centralwidget)
+        self.label_info.setGeometry(QtCore.QRect(670, 310, 801, 471))
+        self.label_info.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+                                      "border:1px solid")
+        self.label_info.setText("我是测试")
+        self.label_info.setObjectName("label_info")
+        self.label_info.setVisible(False)
+
+        self.welcome = QtWidgets.QLabel(self.centralwidget)
+        self.welcome.setGeometry(QtCore.QRect(940, 380, 251, 61))
+        font = QtGui.QFont()
+        font.setFamily("Freestyle Script")
+        font.setPointSize(36)
+        self.welcome.setFont(font)
+        self.welcome.setObjectName("welcome")
+
+        self.label_15 = QtWidgets.QLabel(self.centralwidget)
+        self.label_15.setGeometry(QtCore.QRect(830, 480, 151, 61))
+        font = QtGui.QFont()
+        font.setFamily("AcadEref")
+        font.setPointSize(36)
+        self.label_15.setFont(font)
+        self.label_15.setObjectName("label_15")
+        self.label_14 = QtWidgets.QLabel(self.centralwidget)
+        self.label_14.setGeometry(QtCore.QRect(830, 580, 141, 51))
+        font = QtGui.QFont()
+        font.setFamily("AcadEref")
+        font.setPointSize(36)
+        self.label_14.setFont(font)
+        self.label_14.setObjectName("label_14")
+        self.nameinfo = QtWidgets.QLabel(self.centralwidget)
+        self.nameinfo.setGeometry(QtCore.QRect(980, 480, 181, 61))
+        font = QtGui.QFont()
+        font.setFamily("AcadEref")
+        font.setPointSize(36)
+        self.nameinfo.setFont(font)
+        self.nameinfo.setStyleSheet("backgroud-color:rgb(0, 255, 255)")
+        self.nameinfo.setObjectName("name")
+        self.number = QtWidgets.QLabel(self.centralwidget)
+        self.number.setGeometry(QtCore.QRect(990, 580, 151, 61))
+        font = QtGui.QFont()
+        font.setFamily("AcadEref")
+        font.setPointSize(36)
+        self.number.setFont(font)
+        self.number.setObjectName("number")
+
+
+
+
+
         self.Month = QtWidgets.QLabel(self.centralwidget)
         self.Month.setGeometry(QtCore.QRect(700, 350, 111, 101))
         palette = QtGui.QPalette()
@@ -318,5 +371,11 @@ class Ui_MainWindow(object):
         self.Menute.setText(_translate("MainWindow", "10"))
         self.label_12.setText(_translate("MainWindow", ":"))
         self.label_13.setText(_translate("MainWindow", "59"))
+        self.welcome.setText(_translate("MainWindow", "欢迎光临"))
+
+        self.label_15.setText(_translate("MainWindow", "姓名:"))
+        self.label_14.setText(_translate("MainWindow", "编号:"))
+        self.nameinfo.setText(_translate("MainWindow", "张三"))
+        self.number.setText(_translate("MainWindow", "001"))
 
 import Resource_rc

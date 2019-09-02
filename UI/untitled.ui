@@ -243,6 +243,9 @@ border:1px solid;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
+       <property name="enabled">
+           <bool>true</bool>
+       </property>
     <property name="geometry">
      <rect>
       <x>670</x>
@@ -793,6 +796,117 @@ border:1px solid</string>
      <string>59</string>
     </property>
    </widget>
+      <widget class="QLabel" name="label_info">
+          <property name="geometry">
+              <rect>
+                  <x>670</x>
+                  <y>310</y>
+                  <width>801</width>
+                  <height>471</height>
+              </rect>
+          </property>
+          <property name="text">
+              <string/>
+          </property>
+      </widget>
+      <widget class="QLabel" name="welcome">
+          <property name="geometry">
+              <rect>
+                  <x>940</x>
+                  <y>380</y>
+                  <width>251</width>
+                  <height>61</height>
+              </rect>
+          </property>
+          <property name="font">
+              <font>
+                  <family>Freestyle Script</family>
+                  <pointsize>36</pointsize>
+              </font>
+          </property>
+          <property name="text">
+              <string>欢迎光临</string>
+          </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+          <property name="geometry">
+              <rect>
+                  <x>830</x>
+                  <y>480</y>
+                  <width>151</width>
+                  <height>61</height>
+              </rect>
+          </property>
+          <property name="font">
+              <font>
+                  <family>AcadEref</family>
+                  <pointsize>36</pointsize>
+              </font>
+          </property>
+          <property name="text">
+              <string>姓名:</string>
+          </property>
+      </widget>
+      <widget class="QLabel" name="label_14">
+          <property name="geometry">
+              <rect>
+                  <x>830</x>
+                  <y>580</y>
+                  <width>141</width>
+                  <height>51</height>
+              </rect>
+          </property>
+          <property name="font">
+              <font>
+                  <family>AcadEref</family>
+                  <pointsize>36</pointsize>
+              </font>
+          </property>
+          <property name="text">
+              <string>编号:</string>
+          </property>
+      </widget>
+      <widget class="QLabel" name="name">
+          <property name="geometry">
+              <rect>
+                  <x>980</x>
+                  <y>480</y>
+                  <width>181</width>
+                  <height>61</height>
+              </rect>
+          </property>
+          <property name="font">
+              <font>
+                  <family>AcadEref</family>
+                  <pointsize>36</pointsize>
+              </font>
+          </property>
+          <property name="styleSheet">
+              <string notr="true">backgroud-color:rgb(0, 255, 255)</string>
+          </property>
+          <property name="text">
+              <string>张三</string>
+          </property>
+      </widget>
+      <widget class="QLabel" name="number">
+          <property name="geometry">
+              <rect>
+                  <x>990</x>
+                  <y>580</y>
+                  <width>151</width>
+                  <height>61</height>
+              </rect>
+          </property>
+          <property name="font">
+              <font>
+                  <family>AcadEref</family>
+                  <pointsize>36</pointsize>
+              </font>
+          </property>
+          <property name="text">
+              <string>001</string>
+          </property>
+      </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -800,7 +914,7 @@ border:1px solid</string>
      <x>0</x>
      <y>0</y>
      <width>1492</width>
-     <height>26</height>
+        <height>23</height>
     </rect>
    </property>
   </widget>

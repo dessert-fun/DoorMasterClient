@@ -29,6 +29,12 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, value=480)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, value=620)
 
+        # test
+        self.label_info.setVisible(True)
+        self.label_info.raise_()
+        # self.label_info.setVisible(False)
+
+
         # 动态显示时间
         timer = QTimer(self)
         timer.timeout.connect(self.setTime)
