@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
         self.label_info.setGeometry(QtCore.QRect(670, 310, 801, 471))
         self.label_info.setStyleSheet("background-color:rgb(255, 255, 255);\n"
                                       "border:1px solid")
-        self.label_info.setText("我是测试")
+        self.label_info.setText("")
         self.label_info.setObjectName("label_info")
         self.label_info.setVisible(False)
 

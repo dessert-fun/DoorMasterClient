@@ -20,8 +20,11 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
         self.setWindowTitle('智能门禁系统')
         self.Duigou.setVisible(False)
         self.Right.setVisible(False)
-
-        self.faceRec = face.Face(list1)
+        self.list1 = list1
+        list0 = []
+        for i in self.list1:
+            list0.append(i['img'])
+        self.faceRec = face.Face(list0)
 
         # 摄像头初始化
         self.cap = cv2.VideoCapture(0)
@@ -31,22 +34,56 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
 
         # test
         self.label_info.setVisible(True)
-        self.label_info.raise_()
-        # self.label_info.setVisible(False)
-
+        self.showTime(True)
+        self.showInfo1(False)
 
         # 动态显示时间
         timer = QTimer(self)
         timer.timeout.connect(self.setTime)
         timer.start()
 
+    def showTime(self, flag):
+        self.Month.setVisible(flag)
+        self.label_7.setVisible(flag)
+        self.Day.setVisible(flag)
+        self.label_8.setVisible(flag)
+        self.Temp.setVisible(flag)
+        self.label_9.setVisible(flag)
+        self.label_10.setVisible(flag)
+        self.WeekDay.setVisible(flag)
+        self.Hour.setVisible(flag)
+        self.label_11.setVisible(flag)
+        self.Menute.setVisible(flag)
+        self.label_13.setVisible(flag)
+        self.label_12.setVisible(flag)
+        self.Weather.setVisible(flag)
+
+    def showInfo1(self, flag):
+        self.welcome.setVisible(flag)
+        self.label_15.setVisible(flag)
+        self.nameinfo.setVisible(flag)
+        self.label_14.setVisible(flag)
+        self.number.setVisible(flag)
+
+    def showInfo3(self, flag, id, name):
+        self.welcome.setVisible(flag)
+        self.label_15.setVisible(flag)
+        self.nameinfo.setVisible(flag)
+        self.nameinfo.setText(name)
+        self.label_14.setVisible(flag)
+        self.number.setVisible(flag)
+        self.number.setText(str(id))
+
+    def closeEvent(self, *args, **kwargs):
+        self.cap.release()
 
     def run(self):
         # 设置识别阈值
+        threshold = 9
+        count = 0
 
         while 1:
-            threshold = 9
-            count = 0
+
 
             flag, image = self.cap.read()
             c = cv2.waitKey(30) & 0xff
@@ -61,12 +98,14 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
             # 匹配到人像
             faceCount = 0
             for (x, y, w, h) in faces:
+                print('捕获到人像')
                 cv2.rectangle(show, (x, y), (x + w, y + h), (255, 0, 0), 2)
                 faceCount += 1
                 if faceCount > 1:
                     print("请不要多个人站在摄像头内")
                 count += 1
 
+                print(count, threshold)
                 if count == threshold:
 
                     print("成功捕获")
@@ -82,8 +121,11 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
                     me = cv2.resize(image, (80, 45))
                     cv2.imwrite("capture.jpg", image, [cv2.IMWRITE_JPEG_QUALITY, 50])
 
-                    score, feedback = self.faceRec.match("capture.jpg")
+                    score, feedback, index, isResult = self.faceRec.match("capture.jpg")
                     print('Score:', score, "Feedback", feedback)
+                    if (isResult):
+                        print("姓名:", self.list1[index]['name'])
+                        print("ID:", self.list1[index]['id'])
                     self.SimLabel.setText(str(score))
 
                     # 查询失败
@@ -96,6 +138,11 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
                     if int(score.replace("%", '')) > 80:
                         self.Right.setVisible(True)
                         self.Duigou.setVisible(True)
+
+                        # 显示查询成功后的信息
+                        self.showTime(False)
+                        self.showInfo3(True, str(self.list1[index]['id']), self.list1[index]['name'])
+
 
                     img = cv2.imread(feedback, 1)
                     img = cv2.resize(img, (320, 240))
