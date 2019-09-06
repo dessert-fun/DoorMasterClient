@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- 引入 echarts.js -->
+    <script src="/static/js/echarts.js"></script>
+
+    <title>首页</title>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/static/assets/styles/style.min.css">
+
+    <!-- Material Design Icon -->
+    <link rel="stylesheet" href="/static/assets/fonts/material-design/css/materialdesignicons.css">
+
+    <!-- mCustomScrollbar -->
+    <link rel="stylesheet" href="/static/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+
+    <!-- Waves Effect -->
+    <link rel="stylesheet" href="/static/assets/plugin/waves/waves.min.css">
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="/static/assets/plugin/sweet-alert/sweetalert.css">
+
+    <!-- Morris Chart -->
+    <link rel="stylesheet" href="/static/assets/plugin/chart/morris/morris.css">
+
+    <!-- FullCalendar -->
+    <link rel="stylesheet" href="/static/assets/plugin/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="/static/assets/plugin/fullcalendar/fullcalendar.print.css" media='print'>
+
+    <!-- Dark Themes -->
+    <link rel="stylesheet" href="/static/assets/styles/style-dark.min.css">
+</head>
+
+<body>
+<div class="main-menu">
+    <header class="header">
+        <a href="index.html" class="logo"><i class="ico mdi mdi-cube-outline"></i>MyAdmin</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+        <div class="user">
+            <a href="#" class="avatar"><img src="/static/assets/images/avatar-sm-5.jpg" alt=""><span
+                    class="status online"></span></a>
+            <h5 class="name"><a href="/static/profile.html">Denise Emily</a></h5>
+            <h5 class="position">Administrator</h5>
+            <!-- /.name -->
+            <div class="control-wrap js__drop_down">
+                <i class="fa fa-caret-down js__drop_down_button"></i>
+                <div class="control-list">
+                    <div class="control-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></div>
+                    <div class="control-item"><a href="#"><i class="fa fa-gear"></i> Settings</a></div>
+                    <div class="control-item"><a href="#"><i class="fa fa-sign-out"></i> Log out</a></div>
+                </div>
+                <!-- /.control-list -->
+            </div>
+            <!-- /.control-wrap -->
+        </div>
+        <!-- /.user -->
+    </header>
+    <!-- /.header -->
+    <div class="content">
+
+        <div class="navigation">
+            <h5 class="title">Navigation</h5>
+            <!-- /.title -->
+            <ul class="menu js__accordion">
+                <li class="current">
+                    <a class="waves-effect" href="#"><i class="menu-icon mdi mdi-view-dashboard"></i><span>数据展示页</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="{{url_for('control')}}"><i
+                            class="menu-icon mdi mdi-desktop-mac"></i><span>控制面板</span></a>
+
+                    <!-- /.sub-menu js__content -->
+                </li>
+
+
+            </ul>
+            <!-- /.menu js__accordion -->
+
+
+        </div>
+        <!-- /.navigation -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.main-menu -->
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Home</h1>
+        <!-- /.page-title -->
+    </div>
+    <!-- /.pull-left -->
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item mdi mdi-magnify js__toggle_open" data-target="#searchform-header"></a>
+            <form action="#" id="searchform-header" class="searchform js__toggle"><input type="search"
+                                                                                         placeholder="Search..."
+                                                                                         class="input-search">
+                <button class="mdi mdi-magnify button-search" type="submit"></button>
+            </form>
+            <!-- /.searchform -->
+        </div>
+        <!-- /.ico-item -->
+        <a href="#" class="ico-item mdi mdi-email notice-alarm js__toggle_open" data-target="#message-popup"></a>
+        <a href="#" class="ico-item pulse"><span class="ico-item mdi mdi-bell notice-alarm js__toggle_open"
+                                                 data-target="#notification-popup"></span></a>
+        <a href="#" class="ico-item mdi mdi-logout js__logout"></a>
+    </div>
+    <!-- /.pull-right -->
+</div>
+<!-- /.fixed-navbar -->
+
+<div id="notification-popup" class="notice-popup js__toggle" data-space="75">
+    <h2 class="popup-title">Your Notifications</h2>
+    <!-- /.popup-title -->
+    <div class="content">
+        <ul class="notice-list">
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-1.jpg" alt=""></span>
+                    <span class="name">John Doe</span>
+                    <span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+                    <span class="time">10 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-2.jpg" alt=""></span>
+                    <span class="name">Anna William</span>
+                    <span class="desc">Like your post: “Facebook Messenger”</span>
+                    <span class="time">15 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar bg-warning"><i class="fa fa-warning"></i></span>
+                    <span class="name">Update Status</span>
+                    <span class="desc">Failed to get available update data. To ensure the please contact us.</span>
+                    <span class="time">30 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-1.jpg" alt=""></span>
+                    <span class="name">Jennifer</span>
+                    <span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+                    <span class="time">45 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-6.jpg" alt=""></span>
+                    <span class="name">Michael Zenaty</span>
+                    <span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+                    <span class="time">50 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-4.jpg" alt=""></span>
+                    <span class="name">Simon</span>
+                    <span class="desc">Like your post: “Facebook Messenger”</span>
+                    <span class="time">1 hour</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar bg-violet"><i class="fa fa-flag"></i></span>
+                    <span class="name">Account Contact Change</span>
+                    <span class="desc">A contact detail associated with your account has been changed.</span>
+                    <span class="time">2 hours</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-7.jpg" alt=""></span>
+                    <span class="name">Helen 987</span>
+                    <span class="desc">Like your post: “Facebook Messenger”</span>
+                    <span class="time">Yesterday</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-2.jpg" alt=""></span>
+                    <span class="name">Denise Jenny</span>
+                    <span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+                    <span class="time">Oct, 28</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-8.jpg" alt=""></span>
+                    <span class="name">Thomas William</span>
+                    <span class="desc">Like your post: “Facebook Messenger”</span>
+                    <span class="time">Oct, 27</span>
+                </a>
+            </li>
+        </ul>
+        <!-- /.notice-list -->
+        <a href="#" class="notice-read-more">See more messages <i class="fa fa-angle-down"></i></a>
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /#notification-popup -->
+
+<div id="message-popup" class="notice-popup js__toggle" data-space="75">
+    <h2 class="popup-title">Recent Messages<a href="#" class="pull-right text-danger">New message</a></h2>
+    <!-- /.popup-title -->
+    <div class="content">
+        <ul class="notice-list">
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-1.jpg" alt=""></span>
+                    <span class="name">John Doe</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">10 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-3.jpg" alt=""></span>
+                    <span class="name">Harry Halen</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">15 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-4.jpg" alt=""></span>
+                    <span class="name">Thomas Taylor</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">30 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-1.jpg" alt=""></span>
+                    <span class="name">Jennifer</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">45 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-sm-5.jpg" alt=""></span>
+                    <span class="name">Helen Candy</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">45 min</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-2.jpg" alt=""></span>
+                    <span class="name">Anna Cavan</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">1 hour ago</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar bg-success"><i class="fa fa-user"></i></span>
+                    <span class="name">Jenny Betty</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">1 day ago</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="/static/assets/images/avatar-5.jpg" alt=""></span>
+                    <span class="name">Denise Peterson</span>
+                    <span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+                    <span class="time">1 year ago</span>
+                </a>
+            </li>
+        </ul>
+        <!-- /.notice-list -->
+        <a href="#" class="notice-read-more">See more messages <i class="fa fa-angle-down"></i></a>
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /#message-popup -->
+<div id="wrapper">
+    <div class="main-content">
+        <div class="row small-spacing">
+            <div class="col-xs-12">
+                <div class="box-content">
+                    <h4 class="box-title">流量统计</h4>
+                    <!-- /.box-title -->
+                    <div class="dropdown js__drop_down">
+                        <a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else there</a></li>
+                            <li class="split"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        <!-- /.sub-menu -->
+                    </div>
+                    <!-- /.dropdown js__dropdown -->
+                    <div id="main3" style="width:1200px;height:400px;"></div>
+
+                    <script type="text/javascript">
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart3 = echarts.init(document.getElementById('main3'));
+
+                        // 指定图表的配置项和数据
+                        setTimeout(function () {
+
+                            option = {
+                                legend: {},
+                                tooltip: {
+                                    trigger: 'axis',
+                                    showContent: false
+                                },
+                                dataset: {
+                                    source: [
+                                        ['time', '周一', '周二', '周三', '周四', '周五', '周六', '周日'],  //（流量统计）需要数据：星期几
+                                        ['A', 17, 28, 19, 15, 25, 17, 21],  //（流量统计）需要数据：某访客，对应周几的次数
+                                        ['B', 23, 25, 36, 31, 34, 31, 22],
+                                        ['C', 21, 12, 15, 34, 22, 25, 19],
+                                        ['D', 32, 11, 32, 24, 39, 31, 18],
+                                        ['E', 32, 31, 22, 24, 39, 31, 27]
+                                    ]
+                                },
+                                xAxis: {type: 'category'},
+                                yAxis: {gridIndex: 0},
+                                grid: {top: '55%'},
+                                series: [
+                                    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                                    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                                    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                                    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                                    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                                    {
+                                        type: 'pie',
+                                        id: 'pie',
+                                        radius: '30%',
+                                        center: ['50%', '25%'],
+                                        label: {
+                                            formatter: '{b}: {@周一} ({d}%)'
+                                        },
+                                        encode: {
+                                            itemName: 'time',
+                                            value: '周一',
+                                            tooltip: '周一'
+                                        }
+                                    }
+                                ]
+                            };
+
+                            myChart3.on('updateAxisPointer', function (event) {
+                                var xAxisInfo = event.axesInfo[0];
+                                if (xAxisInfo) {
+                                    var dimension = xAxisInfo.value + 1;
+                                    myChart3.setOption({
+                                        series: {
+                                            id: 'pie',
+                                            label: {
+                                                formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                                            },
+                                            encode: {
+                                                value: dimension,
+                                                tooltip: dimension
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+
+                            myChart3.setOption(option);
+
+                        });
+
+                    </script>
+
+
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-xs-12 -->
+
+
+            <div class="col-lg-6 col-xs-12">
+                <div class="box-content">
+                    <h4 class="box-title">今日访客</h4>
+                    <!-- /.box-title -->
+                    <div class="dropdown js__drop_down">
+                        <a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else there</a></li>
+                            <li class="split"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        <!-- /.sub-menu -->
+                    </div>
+                    <!-- /.dropdown js__dropdown -->
+
+                    <div id="main2" style="width: 600px;height:400px;"></div>
+
+                    <script type="text/javascript">
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart2 = echarts.init(document.getElementById('main2'));
+                        var option = {
+
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            legend: {
+                                data: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']  //（今日访客）需要数据：访问者姓名数组
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: ['1日', '2日', '3日'] //（今日访客）需要数据：日期（前天，昨天，今天）
+
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value'
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: 'A',
+                                    type: 'bar',
+                                    data: [32, 23, 30]  //（今日访客）需要数据：某访客前天、昨天、今天次数（下同）
+                                },
+                                {
+                                    name: 'B',
+                                    type: 'bar',
+                                    stack: '广告',
+                                    data: [12, 13, 10]
+                                },
+                                {
+                                    name: 'C',
+                                    type: 'bar',
+                                    stack: '广告',
+                                    data: [22, 18, 19]
+                                },
+                                {
+                                    name: 'D',
+                                    type: 'bar',
+                                    stack: '广告',
+                                    data: [15, 22, 21]
+                                },
+                                {
+                                    name: 'E',
+                                    type: 'bar',
+                                    data: [32, 18, 24],
+
+                                },
+                                {
+                                    name: 'F',
+                                    type: 'bar',
+                                    barWidth: 5,
+                                    stack: '搜索引擎',
+                                    data: [20, 32, 31]
+                                },
+                                {
+                                    name: 'G',
+                                    type: 'bar',
+                                    stack: '搜索引擎',
+                                    data: [20, 32, 10]
+                                },
+                                {
+                                    name: 'H',
+                                    type: 'bar',
+                                    stack: '搜索引擎',
+                                    data: [25, 26, 12]
+                                },
+                                {
+                                    name: 'I',
+                                    type: 'bar',
+                                    stack: '搜索引擎',
+                                    data: [25, 18, 12]
+                                }
+                            ]
+                        };
+
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart2.setOption(option);
+                    </script>
+
+
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-6 col-xs-12 -->
+
+            <div class="col-lg-6 col-xs-12">
+                <div class="box-content">
+                    <h4 class="box-title">个人访问次数统计</h4>
+                    <!-- /.box-title -->
+                    <div class="dropdown js__drop_down">
+                        <a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else there</a></li>
+                            <li class="split"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        <!-- /.sub-menu -->
+                    </div>
+                    <!-- /.dropdown js__dropdown -->
+
+                    <div id="main1" style="width: 600px;height:400px;"></div>
+
+
+                    <script type="text/javascript">
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart1 = echarts.init(document.getElementById('main1'));
+
+                        // 指定图表的配置项和数据
+                        option = {
+                            backgroundColor: '#2c343c',
+
+                            title: {
+                                text: '个人访问次数统计',
+                                left: 'center',
+                                top: 20,
+                                textStyle: {
+                                    color: '#ccc'
+                                }
+                            },
+
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+
+                            visualMap: {
+                                show: false,
+                                min: 80,
+                                max: 600,
+                                inRange: {
+                                    colorLightness: [0.5, 0.8]
+                                }
+                            },
+                            series: [
+                                {
+                                    name: '访问来源',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '50%'],
+                                    data: [
+                                        {value: 33, name: 'A'},//（个人访问次数统计）需要数据：value：个人当天访问总次数；name:访问者姓名
+                                        {value: 31, name: 'B'},
+                                        {value: 24, name: 'C'},
+                                        {value: 25, name: 'D'},
+                                        {value: 40, name: 'E'},
+                                        {value: 20, name: 'F'},
+                                    ].sort(function (a, b) {
+                                        return a.value - b.value;
+                                    }),
+                                    roseType: 'radius',
+                                    label: {
+                                        normal: {
+                                            textStyle: {
+                                                color: 'rgba(255, 255, 255, 0.3)'
+                                            }
+                                        }
+                                    },
+                                    labelLine: {
+                                        normal: {
+                                            lineStyle: {
+                                                color: 'rgba(255, 255, 255, 0.3)'
+                                            },
+                                            smooth: 0.2,
+                                            length: 10,
+                                            length2: 20
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#c23531',
+                                            shadowBlur: 200,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    },
+
+                                    animationType: 'scale',
+                                    animationEasing: 'elasticOut',
+                                    animationDelay: function (idx) {
+                                        return Math.random() * 200;
+                                    }
+                                }
+                            ]
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+
+                        myChart1.setOption(option);
+                    </script>
+
+
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-6 col-xs-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row small-spacing">
+            <div class="col-lg-3 col-md-6 col-xs-12">
+                <div class="box-content bg-success text-white">
+                    <div class="statistics-box with-icon">
+                        <i class="ico small fa fa-diamond"></i>
+                        <p class="text text-white">SUCCESS</p>
+                        <h2 class="counter">72943</h2>
+                    </div>
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-3 col-md-6 col-xs-12 -->
+            <div class="col-lg-3 col-md-6 col-xs-12">
+                <div class="box-content bg-info text-white">
+                    <div class="statistics-box with-icon">
+                        <i class="ico small fa fa-download"></i>
+                        <p class="text text-white">DOWNLOAD</p>
+                        <h2 class="counter">6382</h2>
+                    </div>
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-3 col-md-6 col-xs-12 -->
+            <div class="col-lg-3 col-md-6 col-xs-12">
+                <div class="box-content bg-danger text-white">
+                    <div class="statistics-box with-icon">
+                        <i class="ico small fa fa-bug"></i>
+                        <p class="text text-white">FIXED BUG</p>
+                        <h2 class="counter">12564</h2>
+                    </div>
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-3 col-md-6 col-xs-12 -->
+            <div class="col-lg-3 col-md-6 col-xs-12">
+                <div class="box-content bg-warning text-white">
+                    <div class="statistics-box with-icon">
+                        <i class="ico small fa fa-usd"></i>
+                        <p class="text text-white">SALES</p>
+                        <h2 class="counter">2,637</h2>
+                    </div>
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-3 col-md-6 col-xs-12 -->
+        </div>
+        <!-- .row -->
+
+
+    </div>
+    <!-- /.main-content -->
+</div><!--/#wrapper -->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="/static/assets/script/html5shiv.min.js"></script>
+<script src="/static/assets/script/respond.min.js"></script>
+<![endif]-->
+<!--
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/assets/scripts/jquery.min.js"></script>
+<script src="/static/assets/scripts/modernizr.min.js"></script>
+<script src="/static/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/static/assets/plugin/nprogress/nprogress.js"></script>
+<script src="/static/assets/plugin/sweet-alert/sweetalert.min.js"></script>
+<script src="/static/assets/plugin/waves/waves.min.js"></script>
+
+<!-- Morris Chart -->
+<script src="/static/assets/plugin/chart/morris/morris.min.js"></script>
+<script src="/static/assets/plugin/chart/morris/raphael-min.js"></script>
+<script src="/static/assets/scripts/chart.morris.init.min.js"></script>
+
+<!-- Flot Chart -->
+<script src="/static/assets/plugin/chart/plot/jquery.flot.min.js"></script>
+<script src="/static/assets/plugin/chart/plot/jquery.flot.tooltip.min.js"></script>
+<script src="/static/assets/plugin/chart/plot/jquery.flot.categories.min.js"></script>
+<script src="/static/assets/plugin/chart/plot/jquery.flot.pie.min.js"></script>
+<script src="/static/assets/plugin/chart/plot/jquery.flot.stack.min.js"></script>
+<script src="/static/assets/scripts/chart.flot.init.min.js"></script>
+
+<!-- Sparkline Chart -->
+<script src="/static/assets/plugin/chart/sparkline/jquery.sparkline.min.js"></script>
+<script src="/static/assets/scripts/chart.sparkline.init.min.js"></script>
+
+<!-- FullCalendar -->
+<script src="/static/assets/plugin/moment/moment.js"></script>
+<script src="/static/assets/plugin/fullcalendar/fullcalendar.min.js"></script>
+<script src="/static/assets/scripts/fullcalendar.init.js"></script>
+
+<script src="/static/assets/scripts/main.min.js"></script>
+</body>
+</html>

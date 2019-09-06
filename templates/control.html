@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>控制面板页</title>
+
+    <script type="text/javascript" src="/static/js/vue.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/static/assets/styles/style.min.css">
+
+    <!-- Material Design Icon -->
+    <link rel="stylesheet" href="/static/assets/fonts/material-design/css/materialdesignicons.css">
+
+    <!-- mCustomScrollbar -->
+    <link rel="stylesheet" href="/static/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+
+    <!-- Waves Effect -->
+    <link rel="stylesheet" href="/static/assets/plugin/waves/waves.min.css">
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="/static/assets/plugin/sweet-alert/sweetalert.css">
+
+    <!-- Morris Chart -->
+    <link rel="stylesheet" href="/static/assets/plugin/chart/morris/morris.css">
+
+    <!-- FullCalendar -->
+    <link rel="stylesheet" href="/static/assets/plugin/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="/static/assets/plugin/fullcalendar/fullcalendar.print.css" media='print'>
+
+    <!-- Dark Themes -->
+    <link rel="stylesheet" href="/static/assets/styles/style-dark.min.css">
+
+    <style type="text/css">
+        #table table {
+            width: 100%;
+            font-size: 14px;
+            border: 1px solid #eee
+        }
+
+        #table {
+            padding: 0 10px;
+        }
+
+        table thead th {
+            background: #f5f5f5;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table tbody td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+
+        table tbody td span {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .delete {
+            color: red;
+        }
+
+        .edit {
+            color: #008cd5;
+        }
+
+        .add {
+            border: 1px solid #eee;
+            margin: 10px 0;
+            padding: 15px;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            margin-right: 15px;
+        }
+
+        button {
+            background: #008cd5;
+            border: 0;
+            padding: 4px 15px;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        #mask {
+            background: rgba(0, 0, 0, .5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+        }
+
+        .mask {
+            width: 300px;
+            height: 250px;
+            background: rgba(255, 255, 255, 1);
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 47;
+            border-radius: 5px;
+        }
+
+        .title {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .title span {
+            float: right;
+            cursor: pointer;
+        }
+
+        .content {
+            padding: 10px;
+        }
+
+        .content input {
+            width: 270px;
+            margin-bottom: 15px;
+        }
+
+        .wrp {
+            width: 100%;
+            height: 100px;
+
+        }
+
+        .top1 {
+            width: 100%;
+            height: 1000px;
+        }
+
+        .cent {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .xle {
+            width: 18%;
+            height: 1000px;
+
+
+            float: left;
+        }
+
+        .rig {
+            width: 82%;
+            height: 1000px;
+
+
+            float: left;
+        }
+    </style>
+
+</head>
+<body>
+<div class="main-menu">
+    <header class="header">
+        <a href="index.html" class="logo"><i class="ico mdi mdi-cube-outline"></i>MyAdmin</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+        <div class="user">
+            <a href="#" class="avatar"><img src="/static/assets/images/avatar-sm-5.jpg" alt=""><span
+                    class="status online"></span></a>
+            <h5 class="name"><a href="/static/profile.html">Denise Emily</a></h5>
+            <h5 class="position">Administrator</h5>
+            <!-- /.name -->
+            <div class="control-wrap js__drop_down">
+                <i class="fa fa-caret-down js__drop_down_button"></i>
+                <div class="control-list">
+                    <div class="control-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></div>
+                    <div class="control-item"><a href="#"><i class="fa fa-gear"></i> Settings</a></div>
+                    <div class="control-item"><a href="#"><i class="fa fa-sign-out"></i> Log out</a></div>
+                </div>
+                <!-- /.control-list -->
+            </div>
+            <!-- /.control-wrap -->
+        </div>
+        <!-- /.user -->
+    </header>
+    <!-- /.header -->
+    <div class="content">
+
+        <div class="navigation">
+            <h5 class="title">Navigation</h5>
+            <!-- /.title -->
+            <ul class="menu js__accordion">
+                <li>
+                    <a class="waves-effect" href="{{url_for('index')}}"><i class="menu-icon mdi mdi-view-dashboard"></i><span>数据展示页</span></a>
+                </li>
+                <li class="current">
+                    <a class="waves-effect" href="{{url_for('control')}}"><i
+                            class="menu-icon mdi mdi-desktop-mac"></i><span>控制面板</span></a>
+
+                    <!-- /.sub-menu js__content -->
+                </li>
+
+
+            </ul>
+            <!-- /.menu js__accordion -->
+
+
+        </div>
+        <!-- /.navigation -->
+    </div>
+    <!-- /.content -->
+</div>
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Intelligent Door Lock</h1>
+        <!-- /.page-title -->
+    </div>
+    <!-- /.pull-left -->
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="alert.html" class="ico-item mdi mdi-magnify js__toggle_open" data-target="#searchform-header"></a>
+            <form action="alert.html" id="searchform-header" class="searchform js__toggle"><input type="search"
+                                                                                                  placeholder="Search..."
+                                                                                                  class="input-search">
+                <button class="mdi mdi-magnify button-search" type="submit"></button>
+            </form>
+            <!-- /.searchform -->
+        </div>
+        <!-- /.ico-item -->
+        <a href="alert.html" class="ico-item mdi mdi-email notice-alarm js__toggle_open"
+           data-target="#message-popup"></a>
+        <a href="alert.html" class="ico-item pulse"><span class="ico-item mdi mdi-bell notice-alarm js__toggle_open"
+                                                          data-target="#notification-popup"></span></a>
+        <a href="alert.html" class="ico-item mdi mdi-logout js__logout"></a>
+    </div>
+    <!-- /.pull-right -->
+</div>
+<div class="cent">
+    <div class="wrp"></div>
+    <div class="top1">
+        <div class="xle"></div>
+        <div class="rig">
+            <div id="table">
+
+                <div class="add">
+                    <!--<form method="post" enctype="multipart/form-data">-->
+                    <input type="submit" class="edit" value="添加成员"
+                           style="background: orangered;height:40px;width:1190px" @click="edit2()">
+                    <!--<div class="upload-wrap">-->
+                    <!--<div class="upload-wrap">-->
+                    <!--<input type="file" id="img" name="img"/>-->
+                    <!--<input type="submit" class="button bt1" value="添加成员"/>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</form>-->
+                </div>
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>编号</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    {% for item in newsList1 %}
+
+                    <tr>
+
+                        <td width="20%">{{item['num']}}</td>
+                        <td width="30%">{{item['name']}}</td>
+                        <td width="30%">{{item['dates']}}</td>
+                        <td width="10%"><span id="{{loop.index}}" onclick="deletelist(this)"
+                                              class="delete">删除</span><span class="edit" id="{{loop.index+50}}"
+                                                                            @click="edit()"
+                                                                            onclick="add3(this)">编辑</span></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div id="mask" v-if="editlist">
+                    <div class="mask">
+                        <div class="title">
+                            编辑
+                            <span @click="editlist=false">
+					X
+				</span>
+                        </div>
+                        <div class="content">
+                            <form name="change">
+                                <input type="text" v-model="editDetail.name" name="name" value="" placeholder="姓名"/>
+                                <input type="file" id="img" name="img"/>
+                                *请上传正面证件照片（无ps，无妆，单人）
+                                <button @click="update(kkk)">更新</button>
+                                <button @click="editlist=false">取消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="mask" v-if="editlist2">
+                    <div class="mask">
+                        <div class="title">
+                            添加成员
+                            <span @click="editlist2=false">
+					X
+				</span>
+                        </div>
+                        <div class="content">
+                            <form name="add">
+                                <input type="text" v-model="editDetail.name" name="name" value="" placeholder="姓名"/>
+                                <input type="file" id="img" name="img" multiple>
+                                *请上传正面证件照片（无ps，无妆，单人）
+                                <button @click="add2()">添加</button>
+                                <button @click="editlist2=false">取消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+
+    var kkk;
+
+    var app = new Vue({
+        el: '#table',
+        data: {
+            addDetail: {},
+            editlist: false,
+            editlist2: false,
+            kkk5: 1,
+            editDetail: {},
+            newsList: [{
+                name: '同学A',
+                num: '001',
+                dates: '2018-02-09',
+                id: "45211546"
+            }, {
+                name: '同学B',
+                num: '002',
+                dates: '2018-06-15',
+                id: "61341341"
+            }, {
+                name: '同学C',
+                num: '003',
+                dates: '2018-02-19',
+                id: "62451431"
+            }, {
+                name: '同学C',
+                num: '003',
+                dates: '2018-02-16',
+                id: "62345213"
+            }, {
+                name: '同学D',
+                num: '004',
+                dates: '2018-03-09',
+                id: "23322445"
+            }],
+            editid: ''
+        },
+        mounted() {
+
+        },
+        methods: {
+
+            //新增
+
+            add2() {
+
+                /*$.ajax({
+                    url: "index/save",
+                    type: 'post',
+                    data: {name: document.add.name.value, img: document.add.img.value},
+                    success: function x1() {
+                        alert('成功')
+
+                    }
+                })*/
+
+                var name = document.add.name.value;
+                var xmlHttp = new XMLHttpRequest();
+                var img = document.add.img.files[0];
+                var fd = new FormData();
+                fd.append("img", img)
+                fd.append("name", name)
+                xmlHttp.open("POST", 'index/save');
+                xmlHttp.onreadystatechange = function () {
+
+                    if (xmlHttp.readyState == 4) {
+                        var dict = xmlHttp.responseText;
+                        if (dict == 1) {
+                            alert("success")
+                        } else {
+                        }
+
+                    }
+                };
+                xmlHttp.send(fd);
+
+
+                this.editlist2 = false
+            },
+
+            adddetail() {
+                //这里的思路应该是把this.addDetail传给服务端，然后加载列表this.newsList
+                //this.newsList.push(this.addDetail)
+                this.newsList.push({
+                    name: this.addDetail.name,
+                    num: this.addDetail.num,
+                    dates: this.addDetail.dates,
+                })
+
+                //axios.post('url',this.addDetail).then((res) =>{
+                //若返回正确结果，清空新增输入框的数据
+                //this.addDetail.title = ""
+                //this.addDetail.user = ""
+                //this.addDetail.dates = ""
+                //})
+
+            },
+            //删除
+
+            //编辑
+
+            edit2() {
+                this.editlist2 = true
+            },
+
+            edit() {
+                // this.editDetail = {
+                // 	name: item.name,
+                // 	num: item.num,
+                // 	dates: item.dates
+                // }
+
+
+                this.editlist = true
+                // this.editid = item.id
+
+            },
+            //确认更新
+            update(element) {
+
+                var name = document.change.name.value;
+                var xmlHttp = new XMLHttpRequest();
+                var img = document.change.img.files[0];
+                var fd = new FormData();
+                var id = element;
+
+                fd.append("img", img);
+                fd.append("name", name);
+                fd.append("id", id);
+
+                xmlHttp.open("POST", 'index/change');
+                xmlHttp.onreadystatechange = function () {
+
+                    if (xmlHttp.readyState == 4) {
+                        var dict = xmlHttp.responseText;
+                        if (dict == 1) {
+                            alert("success")
+                        } else {
+                        }
+
+                    }
+                };
+                xmlHttp.send(fd);
+
+
+                /*$.ajax({
+                    url: "index/change",
+                    type: 'post',
+                    data: {id: element, name: document.change.name.value, img: document.change.img.value},
+                    success: function x2() {
+                        alert('成功')
+                    }
+
+                    //编辑的话，也是传id去服务端
+                    //axios.get('url',{ID:id}).then((res) =>{
+                    //			加载列表
+                    //})
+                    // let _this= this
+                    // for(let i = 0; i < _this.newsList.length; i++) {
+                    // 	if(_this.newsList[i].id ==this.editid) {
+                    // 		_this.newsList[i] = {
+                    // 			name: _this.editDetail.name,
+                    // 			num: _this.editDetail.num,
+                    // 			dates: _this.editDetail.dates,
+                    // 			id: this.editid
+                    // 		}
+                    // 		this.editlist = false
+                    // 	}
+                    // }
+                })*/
+
+
+                this.editlist = false;
+            }
+        }
+    })
+
+
+    function add3(element) {
+        kkk = element.id - 50
+    }
+
+    function deletelist(element) {
+
+        $.ajax({
+            url: "index/delete",
+            type: 'post',
+            data: {id: element.id},
+            success: function () {
+                alert('成功')
+
+            }
+        })
+        //这边可以传id给服务端进行删除  ID = id
+        //axios.get('url',{ID:id}).then((res) =>{
+        //			加载列表
+        //})
+    }
+
+    // import GLOBAL from '@/templates/globle_variable'
+</script>
+
+</body>
+</html>
