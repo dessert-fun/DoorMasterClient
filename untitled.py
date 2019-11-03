@@ -103,15 +103,16 @@ class Ui_MainWindow(object):
 "border:1px solid")
         self.label_6.setText("")
         self.label_6.setObjectName("label_6")
+        self.label_6.setVisible(True)
 
         # 使用label_info作为成功后的展示面板
-        self.label_info = QtWidgets.QLabel(self.centralwidget)
-        self.label_info.setGeometry(QtCore.QRect(670, 310, 801, 471))
-        self.label_info.setStyleSheet("background-color:rgb(255, 255, 255);\n"
-                                      "border:1px solid")
-        self.label_info.setText("我是测试")
-        self.label_info.setObjectName("label_info")
-        self.label_info.setVisible(False)
+        # self.label_info = QtWidgets.QLabel(self.centralwidget)
+        # self.label_info.setGeometry(QtCore.QRect(670, 310, 801, 471))
+        # self.label_info.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        #                               "border:1px solid")
+        # self.label_info.setText("我是测试")
+        # self.label_info.setObjectName("label_info")
+        # self.label_info.setVisible(False)
 
         self.welcome = QtWidgets.QLabel(self.centralwidget)
         self.welcome.setGeometry(QtCore.QRect(940, 380, 251, 61))

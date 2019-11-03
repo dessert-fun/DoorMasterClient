@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QImage, QPixmap
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 import sys
 import app
 from untitled import *
@@ -30,8 +30,8 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, value=620)
 
         # test
-        self.label_info.setVisible(True)
-        self.label_info.raise_()
+        # self.label_info.setVisible(True)
+        # self.label_info.raise_()
         # self.label_info.setVisible(False)
 
 
@@ -47,7 +47,6 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
         count = 0
         while 1:
             threshold = 9
-
 
             flag, image = self.cap.read()
             c = cv2.waitKey(30) & 0xff
@@ -131,6 +130,31 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
         # print(week)
         # print("hello world")
 
+    def slotInformation(self):
+        QMessageBox.information(self, "Information",
+                                self.tr("请不要多人同屏!!"))
+        self.label.setText("Information MessageBox")
+
+    def showInfo(self, flag):
+        self.Month.setVisible(not flag)
+        self.label_7.setVisible(not flag)
+        self.Day.setVisible(not flag)
+        self.label_8.setVisible(not flag)
+        self.label_10.setVisible(not flag)
+        self.WeekDay.setVisible(not flag)
+        self.Weather.setVisible(not flag)
+        self.Hour.setVisible(not flag)
+        self.label_11.setVisible(not flag)
+        self.Menute.setVisible(not flag)
+        self.label_12.setVisible(not flag)
+        self.label_13.setVisible(not flag)
+
+        self.welcome.setVisible(flag)
+        self.label_14.setVisible(flag)
+        self.label_15.setVisible(flag)
+        self.nameinfo.setVisible(flag)
+        self.number.setVisible(flag)
+
 
 
 if __name__ == '__main__':
@@ -143,7 +167,9 @@ if __name__ == '__main__':
     app=QApplication(sys.argv)
 
     myWin = MyWindow(list1)
+    myWin.showInfo(False)
     myWin.show()
+    myWin.slotInformation()
     myWin.start()
 
     sys.exit(app.exec())
