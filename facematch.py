@@ -5,9 +5,9 @@ import app
 class Face(object):
 
     def __init__(self, img2):
-        APP_ID = '16866155'
-        API_KEY = 'kSzesGu8TY60LgcMxKRuer4p'
-        SECRET_KEY = 'naKW6b2KfUsWV03DbDUaspg0gtQ1xeYA'
+        APP_ID = '17682690'
+        API_KEY = '5eCle0cSXa8PHsgjUOiklXVo'
+        SECRET_KEY = 'u5P7KVK31knFK6T8i59Sj9ysXq200Hxf'
 
         self.feedback=None
         self.img2 = img2

@@ -44,9 +44,10 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
     def run(self):
         # 设置识别阈值
 
+        count = 0
         while 1:
             threshold = 9
-            count = 0
+
 
             flag, image = self.cap.read()
             c = cv2.waitKey(30) & 0xff
@@ -66,6 +67,7 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
                 if faceCount > 1:
                     print("请不要多个人站在摄像头内")
                 count += 1
+                print("count:{}".format(count))
 
                 if count == threshold:
 
@@ -105,6 +107,7 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
                     QImg = QImage(img.data, width, height, bytesPerLine, QImage.Format_RGB888)
                     pixmap = QPixmap.fromImage(QImg)
                     self.DataBaseLabel.setPixmap(pixmap)
+                    count = 0
 
             showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
                                      QtGui.QImage.Format_RGB888)

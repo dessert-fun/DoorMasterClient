@@ -328,11 +328,11 @@
                                     dataset: {
                                         source: [
                                             ['time', '周一', '周二', '周三', '周四', '周五', '周六', '周日'],  //（流量统计）需要数据：星期几
-                                            ['A', 17, 28, 19, 15, 25, 17, 21],  //（流量统计）需要数据：某访客，对应周几的次数
-                                            ['B', 23, 25, 36, 31, 34, 31, 22],
-                                            ['C', 21, 12, 15, 34, 22, 25, 19],
-                                            ['D', 32, 11, 32, 24, 39, 31, 18],
-                                            ['E', 32, 31, 22, 24, 39, 31, 27]
+                                            ['A', Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100)],  //（流量统计）需要数据：某访客，对应周几的次数
+                                            ['B', Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100)],  //（流量统计）需要数据：某访客，对应周几的次数
+                                            ['C', Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100)],  //（流量统计）需要数据：某访客，对应周几的次数
+                                            ['D', Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100)],  //（流量统计）需要数据：某访客，对应周几的次数
+                                            ['E', Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100)]  //（流量统计）需要数据：某访客，对应周几的次数
                                         ]
                                     },
                                     xAxis: {type: 'category'},
@@ -442,6 +442,8 @@
                         type = "text/javascript" >
                             // 基于准备好的dom，初始化echarts实例
                             function createBar2() {
+                                visited = [Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100), Math.ceil(Math.random() * 100)];
+
 
                                 var myChart2 = echarts.init(document.getElementById('main2'));
                                 var option = {
@@ -477,30 +479,30 @@
                                         {
                                             name: 'A',
                                             type: 'bar',
-                                            data: [32, 23, 30]  //（今日访客）需要数据：某访客前天、昨天、今天次数（下同）
+                                            data: visited   //（今日访客）需要数据：某访客前天、昨天、今天次数（下同）
                                         },
                                         {
                                             name: 'B',
                                             type: 'bar',
                                             stack: '广告',
-                                            data: [12, 13, 10]
+                                            data: visited
                                         },
                                         {
                                             name: 'C',
                                             type: 'bar',
                                             stack: '广告',
-                                            data: [22, 18, 19]
+                                            data: visited
                                         },
                                         {
                                             name: 'D',
                                             type: 'bar',
                                             stack: '广告',
-                                            data: [15, 22, 21]
+                                            data: visited
                                         },
                                         {
                                             name: 'E',
                                             type: 'bar',
-                                            data: [32, 18, 24],
+                                            data: visited
 
                                         },
                                         {
@@ -508,25 +510,25 @@
                                             type: 'bar',
                                             barWidth: 5,
                                             stack: '搜索引擎',
-                                            data: [20, 32, 31]
+                                            data: visited
                                         },
                                         {
                                             name: 'G',
                                             type: 'bar',
                                             stack: '搜索引擎',
-                                            data: [20, 32, 10]
+                                            data: visited
                                         },
                                         {
                                             name: 'H',
                                             type: 'bar',
                                             stack: '搜索引擎',
-                                            data: [25, 26, 12]
+                                            data: visited
                                         },
                                         {
                                             name: 'I',
                                             type: 'bar',
                                             stack: '搜索引擎',
-                                            data: [25, 18, 12]
+                                            data: visited
                                         }
                                     ]
                                 };
@@ -591,12 +593,12 @@
                             radius: '55%',
                             center: ['50%', '50%'],
                             data: [
-                                {value: 33, name: 'A'},//（个人访问次数统计）需要数据：value：个人当天访问总次数；name:访问者姓名
-                                {value: 31, name: 'B'},
-                                {value: 24, name: 'C'},
-                                {value: 25, name: 'D'},
-                                {value: 40, name: 'E'},
-                                {value: 20, name: 'F'},
+                                {value: Math.ceil(Math.random() * 100), name: 'A'},//（个人访问次数统计）需要数据：value：个人当天访问总次数；name:访问者姓名
+                                {value: Math.ceil(Math.random() * 100), name: 'B'},
+                                {value: Math.ceil(Math.random() * 100), name: 'C'},
+                                {value: Math.ceil(Math.random() * 100), name: 'D'},
+                                {value: Math.ceil(Math.random() * 100), name: 'E'},
+                                {value: Math.ceil(Math.random() * 100), name: 'F'},
                             ].sort(function (a, b) {
                                 return a.value - b.value;
                             }),

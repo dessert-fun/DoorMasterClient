@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # 数据库配置
 class Config(object):
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Xbl18879445215@47.106.137.187:3306/users'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Xbl18879445215@127.0.0.1:3306/users'
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     # 查询时显示SQL原语
