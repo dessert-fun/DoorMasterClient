@@ -273,25 +273,25 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
 
 
                     {% for item in newsList1 %}
 
-                    <tr>
+                    <tr class="{{loop.index}}">
 
                         <td width="20%">{{item['num']}}</td>
-                        <td width="30%">{{item['name']}}</td>
+                        <td width="30%" class="{{loop.index+50}}">{{item['name']}}</td>
                         <td width="30%">{{item['dates']}}</td>
                         <td width="10%"><span id="{{loop.index}}" onclick="deletelist(this)"
                                               class="delete">删除</span><span class="edit" id="{{loop.index+50}}"
-                                                                            @click="edit()"
-                                                                            onclick="add3(this)">编辑</span></td>
+                                                                            onclick="updateUsername(this)">编辑</span>
+                        </td>
                     </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-                <div id="mask" v-if="editlist">
+                <div id="mask1">
                     <div class="mask">
                         <div class="title">
                             编辑
@@ -300,16 +300,18 @@
 				</span>
                         </div>
                         <div class="content">
-                            <form name="change">
-                                <input type="text" v-model="editDetail.name" name="name" value="" placeholder="姓名"/>
+                            <!--<form name="change">-->
+                            <input type="text" v-model="editDetail.name" id="newusername" name="name" placeholder="姓名"/>
                                 <input type="file" id="img" name="img"/>
                                 *请上传正面证件照片（无ps，无妆，单人）
-                                <button @click="update(kkk)">更新</button>
+                            <button onclick="closeMask(this)">更新</button>
                                 <button @click="editlist=false">取消</button>
-                            </form>
+                            <!--</form>-->
                         </div>
                     </div>
                 </div>
+
+
                 <div id="mask" v-if="editlist2">
                     <div class="mask">
                         <div class="title">
@@ -319,13 +321,14 @@
 				</span>
                         </div>
                         <div class="content">
-                            <form name="add">
-                                <input type="text" v-model="editDetail.name" name="name" value="" placeholder="姓名"/>
+                            <!--<form name="add">-->
+                            <input type="text" v-model="editDetail.name" id="username" name="name" value=""
+                                   placeholder="姓名"/>
                                 <input type="file" id="img" name="img" multiple>
                                 *请上传正面证件照片（无ps，无妆，单人）
-                                <button @click="add2()">添加</button>
+                            <button @click="addUser()">添加</button>
                                 <button @click="editlist2=false">取消</button>
-                            </form>
+                            <!--</form>-->
                         </div>
                     </div>
                 </div>
@@ -337,6 +340,22 @@
 </div>
 
 <script>
+    var idd =
+
+        $('#mask1').hide();
+
+    function updateUsername(ele) {
+        idd = ele.id;
+        $('#mask1').show();
+    }
+
+    function closeMask(ele) {
+
+        var newusername = $('#newusername').val();
+        alert(idd);
+        var nameEle = $('.' + idd).html(newusername);
+        $('#mask1').hide();
+    }
 
     var kkk;
 
@@ -380,6 +399,25 @@
 
         },
         methods: {
+
+            addUser() {
+                userid = $('#tbody').children('tr').length + 1;
+                username = $('#username').val();
+                number = Math.round(Math.random() * 1000);
+                element = "<tr>\n" +
+                    "\n" +
+                    "                        <td width=\"20%\">" + userid + "</td>\n" +
+                    "                        <td width=\"30%\">" + username + "</td>\n" +
+                    "                        <td width=\"30%\">" + number + "</td>\n" +
+                    "                        <td width=\"10%\"><span id=" + userid + " onclick=\"deletelist(this)\"\n" +
+                    "                                              class=\"delete\">删除</span><span class=\"edit\" id=" + (userid + 50) + "+\n" +
+                    "                                                                            @click=\"edit()\"\n" +
+                    "                                                                            onclick=\"add3(this)\">编辑</span></td>\n" +
+                    "                    </tr>";
+                $('#tbody').append(element);
+                this.editlist2 = false
+
+            },
 
             //新增
 
@@ -457,9 +495,10 @@
 
             },
             //确认更新
-            update(element) {
+            update() {
 
-                var name = document.change.name.value;
+
+                /*var name = document.change.name.value;
                 var xmlHttp = new XMLHttpRequest();
                 var img = document.change.img.files[0];
                 var fd = new FormData();
@@ -481,7 +520,7 @@
 
                     }
                 };
-                xmlHttp.send(fd);
+                xmlHttp.send(fd);*/
 
 
                 /*$.ajax({
@@ -529,7 +568,8 @@
             data: {id: element.id},
             success: function () {
                 alert('成功')
-
+                var id = element.id;
+                $('.' + id).remove();
             }
         })
         //这边可以传id给服务端进行删除  ID = id

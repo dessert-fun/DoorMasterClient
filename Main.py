@@ -65,6 +65,8 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
                 faceCount += 1
                 if faceCount > 1:
                     print("请不要多个人站在摄像头内")
+                    self.slotInformation()
+
                 count += 1
                 print("count:{}".format(count))
 
@@ -97,6 +99,7 @@ class MyWindow(QMainWindow,Ui_MainWindow,threading.Thread):
                     if int(score.replace("%", '')) > 80:
                         self.Right.setVisible(True)
                         self.Duigou.setVisible(True)
+                        self.showInfo(True)
 
                     img = cv2.imread(feedback, 1)
                     img = cv2.resize(img, (320, 240))
